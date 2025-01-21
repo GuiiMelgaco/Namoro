@@ -33,38 +33,21 @@
             margin: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             width: 300px;
-            font-size: 20px;
-            color: #555;
-        }
-
-        .valor {
-            font-weight: bold;
             font-size: 24px;
-            color: #000;
+            color: #555;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <h1>Guilherme & Cíntia<br>Nossa história começou há:</h1>
+    <h1>Tempo Juntos</h1>
     <div class="contador">
-        <div class="bloco">
-            <span> Anos:<span class="valor" id="anos"> anos</span></span>
-        </div>
-        <div class="bloco">
-            <span><span class="valor" id="meses"> meses</span></span>
-        </div>
-        <div class="bloco">
-            <span><span class="valor" id="dias"> dias</span></span>
-        </div>
-        <div class="bloco">
-            <span><span class="valor" id="horas"> horas</span></span>
-        </div>
-        <div class="bloco">
-            <span><span class="valor" id="minutos"> minutos</span></span>
-        </div>
-        <div class="bloco">
-            <span><span class="valor" id="segundos"> segundos</span></span>
-        </div>
+        <div class="bloco" id="anos">Calculando...</div>
+        <div class="bloco" id="meses">Calculando...</div>
+        <div class="bloco" id="dias">Calculando...</div>
+        <div class="bloco" id="horas">Calculando...</div>
+        <div class="bloco" id="minutos">Calculando...</div>
+        <div class="bloco" id="segundos">Calculando...</div>
     </div>
 
     <script>
@@ -86,12 +69,12 @@
             const minutos = minutosTotais % 60;
             const segundos = segundosTotais % 60;
 
-            document.getElementById("anos").textContent = anos;
-            document.getElementById("meses").textContent = meses;
-            document.getElementById("dias").textContent = dias;
-            document.getElementById("horas").textContent = horas;
-            document.getElementById("minutos").textContent = minutos;
-            document.getElementById("segundos").textContent = segundos;
+            document.getElementById("anos").textContent = ${anos} anos;
+            document.getElementById("meses").textContent = ${meses} meses;
+            document.getElementById("dias").textContent = ${dias} dias;
+            document.getElementById("horas").textContent = ${horas} horas;
+            document.getElementById("minutos").textContent = ${minutos} minutos;
+            document.getElementById("segundos").textContent = ${segundos} segundos;
         }
 
         setInterval(atualizarContador, 1000);
