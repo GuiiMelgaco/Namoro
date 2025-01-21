@@ -18,16 +18,17 @@
             font-family: ABeeZee, sans-serif;
         }
 
-        hr {
-            border: 0;
-            border-top: 2px solid white;
-            margin: 20px 0;
+        .divisor {
+            width: 80%;
+            height: 2px;
+            background-color: #fff;
+            margin: 20px auto;
         }
 
         .contador {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 5px; /* Espaçamento entre linhas e colunas */
+            gap: 5px; /* Diminuído para reduzir a distância */
             justify-items: center;
             margin-top: 20px;
         }
@@ -38,8 +39,8 @@
             border-radius: 15px;
             padding: 20px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 100px;
-            font-size: 18px;
+            width: 300px;
+            font-size: 24px;
             color: #555;
             font-weight: bold;
         }
@@ -60,13 +61,13 @@
 
         .slides img {
             min-width: 100%;
-            height: 500px;
+            height: 500px; /* Altura fixa */
             object-fit: cover;
+            object-position: center;
             border-radius: 15px;
         }
 
-        .slides img:nth-child(4), 
-        .slides img:nth-child(5) {
+        .slides img.top-position {
             object-position: top;
         }
 
@@ -80,7 +81,7 @@
             padding: 10px;
             cursor: pointer;
             font-size: 24px;
-            z-index: 1;
+            z-index: 1; /* Garante que os botões fiquem acima das imagens */
         }
 
         .prev {
@@ -91,18 +92,19 @@
             right: 10px;
         }
 
+        /* Estilos para o mapa */
         #map {
-            width: 80%;
+            width: 100%;
             height: 400px;
-            margin: 20px auto;
             border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
     <h1>Guilherme & Cíntia</h1>
-    <img src="imagens/fotocapa.jpeg" alt="Foto da capa" style="width: 80%; height: auto; max-width: 800px; border-radius: 15px;">
+    <img src="imagens/fotocapa.jpeg" alt="Foto da capa" style="width: 50%; max-width: 400px; border-radius: 15px;">
+    <div class="divisor"></div>
     <h1>Nossa história começou há:</h1>
     <div class="contador">
         <div class="bloco" id="anos">Calculando...</div>
@@ -112,10 +114,8 @@
         <div class="bloco" id="minutos">Calculando...</div>
         <div class="bloco" id="segundos">Calculando...</div>
     </div>
-
-    <hr>
+    <div class="divisor"></div>
     <h1>Local do primeiro beijo</h1>
-    <div id="map"></div>
 
     <!-- Carrossel de imagens -->
     <div class="carrossel">
@@ -123,12 +123,15 @@
             <img src="imagens/foto1.jpeg" alt="Foto 1">
             <img src="imagens/foto2.jpeg" alt="Foto 2">
             <img src="imagens/foto3.jpeg" alt="Foto 3">
-            <img src="imagens/foto4.jpeg" alt="Foto 4">
-            <img src="imagens/foto5.jpeg" alt="Foto 5">
+            <img src="imagens/foto4.jpeg" alt="Foto 4" class="top-position">
+            <img src="imagens/foto5.jpeg" alt="Foto 5" class="top-position">
         </div>
         <button class="prev" onclick="moverSlide(-1)">&#10094;</button>
         <button class="next" onclick="moverSlide(1)">&#10095;</button>
     </div>
+
+    <!-- Mapa do local do primeiro beijo -->
+    <div id="map"></div>
 
     <script>
         function atualizarContador() {
@@ -172,19 +175,24 @@
 
         moverSlide(0);
 
-        // Mapa com marcador
+        // Inicialização do mapa
         function initMap() {
-            const coordenadas = { lat: -19.878361, lng: -44.219556 }; // Coordenadas convertidas
-            const map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 15,
-                center: coordenadas,
+            var localPrimeiroBeijo = { lat: -19.878361, lng: -44.219556 }; // Coordenadas do primeiro beijo
+            var map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 16,
+                center: localPrimeiroBeijo
             });
-            new google.maps.Marker({
-                position: coordenadas,
+            var marker = new google.maps.Marker({
+                position: localPrimeiroBeijo,
                 map: map,
+                title: "Local do primeiro beijo"
             });
         }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbWX6tROmxCx_AIwXmhxZ3eC4toiqxvW0&callback=initMap" async defer></script>
+
+    <!-- Chave da API do Google Maps -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=SUA_CHAVE_AQUI&callback=initMap" async defer></script>
+
+    <h1>Tudo no seu tempo</h1>
 </body>
 </html>
