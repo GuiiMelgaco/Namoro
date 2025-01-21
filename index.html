@@ -1,48 +1,99 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contagem de Tempo</title>
+    <title>Tempo Juntos</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin-top: 50px;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
         }
+
         h1 {
-            color: #4CAF50;
+            color: #333;
+            margin-top: 20px;
         }
-        p {
-            font-size: 1.5em;
+
+        .contador {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .bloco {
+            background-color: #ffffff;
+            border: 2px solid #ddd;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            font-size: 20px;
+            color: #555;
+        }
+
+        .valor {
+            font-weight: bold;
+            font-size: 24px;
+            color: #000;
         }
     </style>
 </head>
 <body>
-    <h1>Nossa história começou há:</h1>
-    <p id="contador">Calculando...</p>
+    <h1>Tempo Juntos</h1>
+    <div class="contador">
+        <div class="bloco">
+            <span>Anos: <span class="valor" id="anos">Calculando...</span></span>
+        </div>
+        <div class="bloco">
+            <span>Meses: <span class="valor" id="meses">Calculando...</span></span>
+        </div>
+        <div class="bloco">
+            <span>Dias: <span class="valor" id="dias">Calculando...</span></span>
+        </div>
+        <div class="bloco">
+            <span>Horas: <span class="valor" id="horas">Calculando...</span></span>
+        </div>
+        <div class="bloco">
+            <span>Minutos: <span class="valor" id="minutos">Calculando...</span></span>
+        </div>
+        <div class="bloco">
+            <span>Segundos: <span class="valor" id="segundos">Calculando...</span></span>
+        </div>
+    </div>
+
     <script>
-        // Data e hora do início do namoro
-        const startDate = new Date("2018-09-08T12:00:00");
-
-        // Função para atualizar o contador
         function atualizarContador() {
-            const now = new Date(); // Data e hora atuais
-            const diff = now - startDate; // Diferença em milissegundos
+            const inicio = new Date("2018-09-08T12:00:00");
+            const agora = new Date();
 
-            // Conversão da diferença em dias, horas, minutos e segundos
-            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const minutos = Math.floor((diff / (1000 * 60)) % 60);
-            const segundos = Math.floor((diff / 1000) % 60);
+            const diferenca = agora - inicio;
 
-            // Monta o texto do contador sem uso de chaves
-            const contador = dias + " dias, " + horas + " horas, " + minutos + " minutos e " + segundos + " segundos";
-            document.getElementById("contador").textContent = contador;
+            const segundosTotais = Math.floor(diferenca / 1000);
+            const minutosTotais = Math.floor(segundosTotais / 60);
+            const horasTotais = Math.floor(minutosTotais / 60);
+            const diasTotais = Math.floor(horasTotais / 24);
+
+            const anos = Math.floor(diasTotais / 365);
+            const meses = Math.floor((diasTotais % 365) / 30);
+            const dias = Math.floor((diasTotais % 365) % 30);
+            const horas = horasTotais % 24;
+            const minutos = minutosTotais % 60;
+            const segundos = segundosTotais % 60;
+
+            document.getElementById("anos").textContent = anos;
+            document.getElementById("meses").textContent = meses;
+            document.getElementById("dias").textContent = dias;
+            document.getElementById("horas").textContent = horas;
+            document.getElementById("minutos").textContent = minutos;
+            document.getElementById("segundos").textContent = segundos;
         }
 
-        // Atualiza o contador imediatamente e a cada 1 segundo
-        atualizarContador();
         setInterval(atualizarContador, 1000);
     </script>
 </body>
