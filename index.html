@@ -43,8 +43,8 @@
             border-radius: 15px;
             padding: 15px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 100%; /* Ajusta para ocupar 100% da largura disponível */
-            max-width: 120px; /* Limita a largura máxima dos blocos */
+            width: 80%;
+            max-width: 80px;
             font-size: 13px;
             color: #555;
             font-weight: bold;
@@ -52,7 +52,7 @@
 
         .carrossel {
             position: relative;
-            max-width: 100%;
+            max-width: 600px;
             margin: 30px auto;
             overflow: hidden;
             border-radius: 15px;
@@ -103,42 +103,7 @@
             height: 300px;
             border-radius: 15px;
             margin: 20px auto;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-        }
-
-        /* Ajustes de imagem para dispositivos móveis */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 24px;
-            }
-
-            .divisor {
-                width: 90%;
-            }
-
-            .contador {
-                grid-template-columns: 1fr 1fr; /* Ajuste para telas menores */
-                width: 100%;
-            }
-
-            .bloco {
-                max-width: 100px;
-                font-size: 12px;
-            }
-
-            .carrossel {
-                width: 100%;
-                max-width: 100%;
-            }
-        }
-
-        /* Estilo para os textos justificados */
-        .texto-justificado {
-            font-size: 18px; /* Ajuste o tamanho conforme necessário */
-            text-align: justify;
-            margin: 20px auto;
-            width: 80%; /* Limita a largura do texto */
-            color: #fff;
+            box-shadow: 0 4px 6x rgba(0,0,0,0.2);
         }
     </style>
 </head>
@@ -157,14 +122,12 @@
     </div>
     <div class="divisor"></div>
     <h1>Onde nós nos conhecemos</h1>
-    <img src="imagens/fotosesi.jpg" alt="Foto do sesi" style="width: 85%; max-width: 400px; height: auto; border-radius: 15px;">
-    
-    <div class="texto-justificado">
-        <p>texto legal (Vou colocar ainda)</p>
-    </div>
-
+    <img src="imagens/fotosesi.jpg" alt="Foto do sesi" style="width: 85%; max-width: 400px;heigth: 150px; border-radius: 15px;">
+    <h1>texto legal(Vou colocar ainda)</h1>
     <div class="divisor"></div>
     <h1>Local do primeiro beijo</h1>
+
+    <!-- Carrossel de imagens --
 
     <!-- Mapa do local do primeiro beijo -->
     <div id="map"></div>
@@ -227,8 +190,9 @@
     </script>
     <!-- Chave da API do Google Maps -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbWX6tROmxCx_AIwXmhxZ3eC4toiqxvW0&callback=initMap" async defer></script>
-<div class="divisor"></div>    
-<h1>Nós</h1>
+ <h1>texto legal(Vou colocar ainda)</h1>
+<div class="divisor"></div>
+    <h1>Nós</h1>
     <div class="carrossel">
         <div class="slides">
             <img src="imagens/foto1.jpeg" alt="Foto 1">
@@ -240,10 +204,7 @@
         <button class="prev" onclick="moverSlide(-1)">&#10094;</button>
         <button class="next" onclick="moverSlide(1)">&#10095;</button>
     </div>
-    <div class="texto-justificado">
-        <p>Declaração final (Vou colocar ainda)</p>
-    </div>
-    
+         <h1>declaração final(Vou colocar ainda)</h1>
     <h1>Tudo no seu tempo</h1>
 </body>
 </html>
