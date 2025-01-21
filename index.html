@@ -54,7 +54,7 @@
 
         .slides img {
             min-width: 100%;
-            height: 300px; /* Altura fixa */
+            height: 200px; /* Altura fixa */
             object-fit: contain; /* Ajusta a imagem sem cortar, mantendo a proporção */
             border-radius: 15px;
         }
@@ -69,6 +69,7 @@
             padding: 10px;
             cursor: pointer;
             font-size: 24px;
+            z-index: 1; /* Garante que os botões fiquem acima das imagens */
         }
 
         .prev {
