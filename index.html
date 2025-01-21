@@ -40,6 +40,51 @@
             color: #555; /* Cor do texto dentro dos blocos */
             font-weight: bold;
         }
+
+        /* Estilo do carrossel */
+        .carrossel {
+            position: relative;
+            max-width: 400px; /* Largura máxima do carrossel */
+            margin: 30px auto; /* Centraliza o carrossel */
+            overflow: hidden;
+            border-radius: 15px; /* Moldura arredondada */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slides img {
+            min-width: 100%;
+            height: auto;
+            border-radius: 15px; /* Moldura arredondada das imagens */
+        }
+
+        button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        button.prev {
+            left: 10px;
+        }
+
+        button.next {
+            right: 10px;
+        }
+
+        button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
     </style>
 </head>
 <body>
@@ -52,6 +97,20 @@
         <div class="bloco" id="minutos">Calculando...</div>
         <div class="bloco" id="segundos">Calculando...</div>
     </div>
+
+    <!-- Carrossel de imagens -->
+    <div class="carrossel">
+        <div class="slides">
+            <img src="imagens/foto1.jpg" alt="Foto 1">
+            <img src="imagens/foto2.jpg" alt="Foto 2">
+            <img src="imagens/foto3.jpg" alt="Foto 3">
+            <img src="imagens/foto4.jpg" alt="Foto 4">
+            <img src="imagens/foto5.jpg" alt="Foto 5">
+        </div>
+        <button class="prev" onclick="moverSlide(-1)">&#10094;</button>
+        <button class="next" onclick="moverSlide(1)">&#10095;</button>
+    </div>
+
     <h1>Tudo no seu tempo</h1>
 
     <script>
@@ -82,6 +141,23 @@
         }
 
         setInterval(atualizarContador, 1000);
+
+        /* Carrossel */
+        let slideIndex = 0;
+
+        function moverSlide(direction) {
+            const slides = document.querySelector('.slides');
+            const totalSlides = slides.children.length;
+
+            // Atualiza o índice do slide
+            slideIndex = (slideIndex + direction + totalSlides) % totalSlides;
+
+            // Move os slides
+            slides.style.transform = "translateX(-" + slideIndex * 100 + "%)";
+        }
+
+        // Mostra o primeiro slide ao carregar
+        moverSlide(0);
     </script>
 </body>
 </html>
