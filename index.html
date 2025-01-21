@@ -4,18 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teste contador</title>
+    <link href="https://fonts.googleapis.com/css2?family=ABeeZee&family=Montserrat+Alternates:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Montserrat Alternates, sans-serif;
+            font-family: 'Montserrat Alternates', sans-serif;
             text-align: center;
             background-color: #537578;
+            color: white; /* Define a cor do texto fora dos blocos como branca */
             margin: 0;
             padding: 0;
         }
 
         h1 {
-            color: #333;
+            font-family: 'ABeeZee', sans-serif;
             margin-top: 20px;
+            color: white;
         }
 
         .contador {
@@ -34,7 +37,7 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             width: 300px;
             font-size: 24px;
-            color: #555;
+            color: #555; /* Cor do texto dentro dos blocos */
             font-weight: bold;
         }
     </style>
@@ -49,6 +52,7 @@
         <div class="bloco" id="minutos">Calculando...</div>
         <div class="bloco" id="segundos">Calculando...</div>
     </div>
+    <h1>Tudo no seu tempo</h1>
 
     <script>
         function atualizarContador() {
@@ -79,6 +83,5 @@
 
         setInterval(atualizarContador, 1000);
     </script>
-<h1>Tudo no seu tempo</h1>
 </body>
 </html>
