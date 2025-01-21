@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guilherme & Cintia<br><br>Nossa história começou há:</title>
+    <title>Guilherme & Cíntia<br><br>Nossa história começou há:</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -52,29 +52,29 @@
 
     <script>
         function atualizarContador() {
-            const inicio = new Date("2018-09-08T12:00:00");
-            const agora = new Date();
+            var inicio = new Date("2018-09-08T12:00:00");
+            var agora = new Date();
 
-            const diferenca = agora - inicio;
+            var diferenca = agora - inicio;
 
-            const segundosTotais = Math.floor(diferenca / 1000);
-            const minutosTotais = Math.floor(segundosTotais / 60);
-            const horasTotais = Math.floor(minutosTotais / 60);
-            const diasTotais = Math.floor(horasTotais / 24);
+            var segundosTotais = Math.floor(diferenca / 1000);
+            var minutosTotais = Math.floor(segundosTotais / 60);
+            var horasTotais = Math.floor(minutosTotais / 60);
+            var diasTotais = Math.floor(horasTotais / 24);
 
-            const anos = Math.floor(diasTotais / 365);
-            const meses = Math.floor((diasTotais % 365) / 30);
-            const dias = Math.floor((diasTotais % 365) % 30);
-            const horas = horasTotais % 24;
-            const minutos = minutosTotais % 60;
-            const segundos = segundosTotais % 60;
+            var anos = Math.floor(diasTotais / 365);
+            var meses = Math.floor((diasTotais % 365) / 30);
+            var dias = Math.floor((diasTotais % 365) % 30);
+            var horas = horasTotais % 24;
+            var minutos = minutosTotais % 60;
+            var segundos = segundosTotais % 60;
 
-            document.getElementById("anos").textContent = ${anos} anos;
-            document.getElementById("meses").textContent = ${meses} meses;
-            document.getElementById("dias").textContent = ${dias} dias;
-            document.getElementById("horas").textContent = ${horas} horas;
-            document.getElementById("minutos").textContent = ${minutos} minutos;
-            document.getElementById("segundos").textContent = ${segundos} segundos;
+            document.getElementById("anos").textContent = anos + " anos";
+            document.getElementById("meses").textContent = meses + " meses";
+            document.getElementById("dias").textContent = dias + " dias";
+            document.getElementById("horas").textContent = horas + " horas";
+            document.getElementById("minutos").textContent = minutos + " minutos";
+            document.getElementById("segundos").textContent = segundos + " segundos";
         }
 
         setInterval(atualizarContador, 1000);
