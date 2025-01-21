@@ -18,10 +18,18 @@
             font-family: ABeeZee, sans-serif;
         }
 
+        .divisor {
+            width: 80%;
+            height: 2px;
+            background-color: #fff;
+            margin: 20px auto;
+        }
+
         .contador {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            justify-items: center;
             margin-top: 20px;
         }
 
@@ -30,7 +38,6 @@
             border: 2px solid #ddd;
             border-radius: 15px;
             padding: 20px;
-            margin: 5px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             width: 300px;
             font-size: 24px;
@@ -60,6 +67,10 @@
             border-radius: 15px;
         }
 
+        .slides img.top-position {
+            object-position: top;
+        }
+
         .prev, .next {
             position: absolute;
             top: 50%;
@@ -84,7 +95,8 @@
 </head>
 <body>
     <h1>Guilherme & Cíntia</h1>
-    <img src="imagens/fotocapa.jpeg" alt= "Foto da capa" style="width: 50%;max-width: 400px; border-radius: 15px;">
+    <img src="imagens/fotocapa.jpeg" alt="Foto da capa" style="width: 50%; max-width: 400px; border-radius: 15px;">
+    <div class="divisor"></div>
     <h1>Nossa história começou há:</h1>
     <div class="contador">
         <div class="bloco" id="anos">Calculando...</div>
@@ -94,6 +106,8 @@
         <div class="bloco" id="minutos">Calculando...</div>
         <div class="bloco" id="segundos">Calculando...</div>
     </div>
+    <div class="divisor"></div>
+    <h1>Local do primeiro beijo</h1>
 
     <!-- Carrossel de imagens -->
     <div class="carrossel">
@@ -101,8 +115,8 @@
             <img src="imagens/foto1.jpeg" alt="Foto 1">
             <img src="imagens/foto2.jpeg" alt="Foto 2">
             <img src="imagens/foto3.jpeg" alt="Foto 3">
-            <img src="imagens/foto4.jpeg" alt="Foto 4">
-            <img src="imagens/foto5.jpeg" alt="Foto 5">
+            <img src="imagens/foto4.jpeg" alt="Foto 4" class="top-position">
+            <img src="imagens/foto5.jpeg" alt="Foto 5" class="top-position">
         </div>
         <button class="prev" onclick="moverSlide(-1)">&#10094;</button>
         <button class="next" onclick="moverSlide(1)">&#10095;</button>
@@ -150,6 +164,6 @@
 
         moverSlide(0);
     </script>
-  <h1>Tudo no seu tempo</h1>
+    <h1>Tudo no seu tempo</h1>
 </body>
 </html>
