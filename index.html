@@ -96,6 +96,14 @@
         .next {
             right: 10px;
         }
+
+        /* Estilos para o mapa */
+        #map {
+            width: 95%;
+            height: 300px;
+            border-radius: 15px;
+            margin: 20px auto;
+            box-shadow: 0 4px 6x rgba(0,0,0,0.2);
         }
         .texto-justificado {
             font-size: 18px; /* Ajuste o tamanho conforme necessário */
@@ -131,6 +139,8 @@
     <!-- Carrossel de imagens --
 
     <!-- Mapa do local do primeiro beijo -->
+    <div id="map"></div>
+
     <script>
         function atualizarContador() {
             var inicio = new Date("2018-09-08T12:00:00");
@@ -174,7 +184,21 @@
         moverSlide(0);
 
         // Inicialização do mapa
-       <img src="imagens/fotomapa.png" alt="Foto do mapa" style="width: 85%; max-width: 400px;heigth: 150px; border-radius: 15px;">
+        function initMap() {
+            var localPrimeiroBeijo = { lat: -19.878361, lng: -44.219556 }; // Coordenadas do primeiro beijo
+            var map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 16,
+                center: localPrimeiroBeijo
+            });
+            var marker = new google.maps.Marker({
+                position: localPrimeiroBeijo,
+                map: map,
+                title: "Local do primeiro beijo"
+            });
+        }
+    </script>
+    <!-- Chave da API do Google Maps -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbWX6tROmxCx_AIwXmhxZ3eC4toiqxvW0&callback=initMap" async defer></script>
      <div class="texto-justificado">
         <p>Declaração final (Vou colocar ainda)<p>
     </div>
