@@ -139,8 +139,6 @@
     <!-- Carrossel de imagens --
 
     <!-- Mapa do local do primeiro beijo -->
-    <div id="map"></div>
-
     <script>
         function atualizarContador() {
             var inicio = new Date("2018-09-08T12:00:00");
@@ -184,21 +182,7 @@
         moverSlide(0);
 
         // Inicialização do mapa
-        function initMap() {
-            var localPrimeiroBeijo = { lat: -19.878361, lng: -44.219556 }; // Coordenadas do primeiro beijo
-            var map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 16,
-                center: localPrimeiroBeijo
-            });
-            var marker = new google.maps.Marker({
-                position: localPrimeiroBeijo,
-                map: map,
-                title: "Local do primeiro beijo"
-            });
-        }
-    </script>
-    <!-- Chave da API do Google Maps -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbWX6tROmxCx_AIwXmhxZ3eC4toiqxvW0&callback=initMap" async defer></script>
+       <img src="imagens/fotomapa.png" alt="Foto do mapa" style="width: 85%; max-width: 400px;heigth: 150px; border-radius: 15px;">
      <div class="texto-justificado">
         <p>Declaração final (Vou colocar ainda)<p>
     </div>
@@ -218,23 +202,6 @@
              <div class="texto-justificado">
         <p>Declaração final (Vou colocar ainda)<p>
     </div>
-<div id="stellarium-container" style="width: 100%; height: 100vh;"></div>
-<script>
-    // Verificando se Stellarium.js foi carregado
-    if (!window.StellariumWeb) {
-        console.error("Stellarium.js não foi carregado. Verifique o caminho do script.");
-    } else {
-        const Stellarium = window.StellariumWeb.init({
-            container: document.getElementById('stellarium-container'),
-            location: {
-                latitude: -19.878361, // Latitude
-                longitude: -44.219556 // Longitude
-            },
-            date: new Date('2018-09-08T22:00:00Z') // Data específica
-        });
-        Stellarium.start();
-    }
-</script>
     <h1>Tudo no seu tempo</h1>
 </body>
 </html>
