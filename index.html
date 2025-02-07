@@ -252,7 +252,9 @@
         <p>Declaração final (Vou colocar ainda)</p>
     </div>
     <h1>Raspe aqui</h1>
-<canvas id="scratchCanvas" style="width: 80%; height: 300px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);"></canvas>
+<div style="display: flex; justify-content: center;">
+    <canvas id="scratchCanvas" style="width: 80%; height: 300px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);"></canvas>
+</div>
  
 <h1>Tudo no seu tempo</h1>
  
@@ -260,34 +262,40 @@
   const canvas = document.getElementById('scratchCanvas');
   const ctx = canvas.getContext('2d');
  
-  // Ajusta o tamanho real do canvas para evitar distorção
+  // Ajustar tamanho real do canvas para evitar distorção
   canvas.width = window.innerWidth * 0.8;
   canvas.height = 300;
  
   let isDrawing = false;
  
-  // Mensagem oculta
-  const message = "E é aqui que damos um novo passo na nossa história.";
+  // Criar um canvas auxiliar para a mensagem
+  const hiddenCanvas = document.createElement('canvas');
+  hiddenCanvas.width = canvas.width;
+  hiddenCanvas.height = canvas.height;
+  const hiddenCtx = hiddenCanvas.getContext('2d');
  
   function setupCanvas() {
-    // Fundo branco para a mensagem
-    ctx.fillStyle = "#FFFAED";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
-    // Exibir a mensagem oculta
-    ctx.fillStyle = "#555";
-    ctx.font = "24px Montserrat Alternates";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.fillText(message, canvas.width / 2, canvas.height / 2);
-    
-    // Criar camada raspável
+    // Fundo do canvas oculto (onde a mensagem será desenhada)
+    hiddenCtx.fillStyle = "#FFFAED";
+    hiddenCtx.fillRect(0, 0, hiddenCanvas.width, hiddenCanvas.height);
+ 
+    // Adicionar a mensagem oculta no canvas de fundo
+    hiddenCtx.fillStyle = "#555";
+    hiddenCtx.font = "24px Montserrat Alternates";
+    hiddenCtx.textAlign = "center";
+    hiddenCtx.textBaseline = "middle";
+    hiddenCtx.fillText("E é aqui que damos um novo passo na nossa história.", hiddenCanvas.width / 2, hiddenCanvas.height / 2);
+ 
+    // Aplicar o conteúdo do canvas oculto para o principal
+    ctx.drawImage(hiddenCanvas, 0, 0);
+ 
+    // Criar camada raspável sobre o canvas principal
     ctx.globalCompositeOperation = "source-over";
     ctx.fillStyle = "#AAA";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
   }
  
-  function startDrawing(event) {
+  function startDrawing() {
     isDrawing = true;
   }
  
@@ -301,19 +309,18 @@
     const rect = canvas.getBoundingClientRect();
     const x = (event.clientX || event.touches[0].clientX) - rect.left;
 const y = (event.clientY || event.touches[0].clientY) - rect.top;
-    
+ 
     ctx.globalCompositeOperation = "destination-out";
     ctx.beginPath();
-    ctx.arc(x, y, 30, 0, Math.PI * 2); // Aumentei o tamanho da área raspada
+    ctx.arc(x, y, 30, 0, Math.PI * 2);
     ctx.fill();
   }
  
-  // Eventos de mouse
+  // Eventos de mouse e toque
   canvas.addEventListener("mousedown", startDrawing);
   canvas.addEventListener("mouseup", stopDrawing);
   canvas.addEventListener("mousemove", scratch);
  
-  // Eventos de toque para dispositivos móveis
   canvas.addEventListener("touchstart", startDrawing);
   canvas.addEventListener("touchend", stopDrawing);
   canvas.addEventListener("touchmove", function (event) {
