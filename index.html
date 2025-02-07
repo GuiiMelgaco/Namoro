@@ -247,13 +247,9 @@
         <button class="prev" onclick="moverSlide(-1)">&#10094;</button>
         <button class="next" onclick="moverSlide(1)">&#10095;</button>
     </div>
-
-    <div class="texto-justificado">
-        <p>Declaração final (Vou colocar ainda)</p>
-    </div>
-    <h1>Raspe aqui</h1>
+<h1>Raspe aqui para revelar</h1>
 <div style="display: flex; justify-content: center;">
-    <canvas id="scratchCanvas" style="width: 85%; height: 350px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);"></canvas>
+    <canvas id="scratchCanvas" style="width: 80%; height: 300px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);"></canvas>
 </div>
  
 <h1>Tudo no seu tempo</h1>
@@ -263,7 +259,7 @@
   const ctx = canvas.getContext('2d');
  
   // Ajustar tamanho real do canvas para evitar distorção
-  canvas.width = window.innerWidth * 0.85;
+  canvas.width = window.innerWidth * 0.8;
   canvas.height = 300;
  
   let isDrawing = false;
@@ -276,12 +272,12 @@
  
   function setupCanvas() {
     // Fundo do canvas oculto (onde a mensagem será desenhada)
-    hiddenCtx.fillStyle = "#FFFAED";
+    hiddenCtx.fillStyle = "#FFFAED"; // Fundo claro
     hiddenCtx.fillRect(0, 0, hiddenCanvas.width, hiddenCanvas.height);
  
     // Adicionar a mensagem oculta no canvas de fundo
-    hiddenCtx.fillStyle = "#555";
-    hiddenCtx.font = "24px Montserrat Alternates";
+    hiddenCtx.fillStyle = "#000"; // Cor do texto PRETO para visibilidade
+    hiddenCtx.font = "bold 24px Montserrat Alternates";
     hiddenCtx.textAlign = "center";
     hiddenCtx.textBaseline = "middle";
     hiddenCtx.fillText("E é aqui que damos um novo passo na nossa história.", hiddenCanvas.width / 2, hiddenCanvas.height / 2);
@@ -291,7 +287,7 @@
  
     // Criar camada raspável sobre o canvas principal
     ctx.globalCompositeOperation = "source-over";
-    ctx.fillStyle = "#AAA";
+    ctx.fillStyle = "#AAA"; // Camada raspável cinza
     ctx.fillRect(0, 0, canvas.width, canvas.height);
   }
  
@@ -330,5 +326,9 @@ const y = (event.clientY || event.touches[0].clientY) - rect.top;
  
   setupCanvas();
 </script>
+    <div class="texto-justificado">
+        <p>Declaração final (Vou colocar ainda)</p>
+    </div>
+
 </body>
 </html>
