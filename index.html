@@ -120,6 +120,47 @@
             width: 80%; /* Limita a largura do texto */
             color: #fff;
         }
+#raspadinha-container {
+    position: relative;
+    width: 90vw; /* 90% da largura da tela */
+    max-width: 800px; /* Limite para telas grandes */
+    margin: 0 auto;
+}
+
+#raspadinha {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Mesma largura do container */
+    height: 100%;
+}
+
+#conteudo-revelado {
+    width: 100%;
+    text-align: center;
+}
+
+#imagem-revelada {
+    width: 100%; /* Ocupa toda a largura do container */
+    height: 70vh; /* 70% da altura da tela */
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+#mensagem {
+    height: 30vh; /* 30% da altura da tela */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
 </style>
 </head>
 <body>
@@ -249,22 +290,37 @@
     <div class="texto-justificado">
 <p>Declaração final (Vou colocar ainda)</p>
 </div>
-<h1>Raspadinha Especiallll</h1>
-<div style="position: relative; display: inline-block;">
-    <img id="imagem-revelada" src="imagens/foto1.jpeg" alt="Imagem Revelada" 
-         style="width: 300px; height: 300px; border-radius: 15px;">
-    <canvas id="raspadinha" width="300" height="300" 
-            style="position: absolute; top: 0; left: 0;"></canvas>
+
+
+<h1>Raspadinha Especial</h1>
+<div id="raspadinha-container">
+    <canvas id="raspadinha"></canvas>
+    <div id="conteudo-revelado">
+        <img id="imagem-revelada" src="imagens/foto1.jpeg" alt="Imagem Revelada">
+        <p id="mensagem">E é aqui que damos o primeiro passo da nossa história</p>
+    </div>
 </div>
+
+
 <h1>Tudo no seu tempo</h1>
+
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const canvas = document.getElementById("raspadinha");
     const ctx = canvas.getContext("2d");
+    const container = document.getElementById("raspadinha-container");
 
-    // Preenchendo o canvas com a camada da raspadinha
-    ctx.fillStyle = "#bbb"; // Cor da camada que será raspada
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // Ajusta o tamanho do canvas dinamicamente
+    function ajustarCanvas() {
+        canvas.width = container.clientWidth;
+        canvas.height = container.clientHeight;
+        ctx.fillStyle = "#bbb"; // Cor da raspadinha
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    window.addEventListener("resize", ajustarCanvas);
+    ajustarCanvas(); // Ajusta ao carregar
 
     let raspando = false;
 
@@ -279,13 +335,13 @@ document.addEventListener("DOMContentLoaded", function () {
     function raspar(event) {
         if (!raspando) return;
         const pos = pegarPosicao(event);
-        ctx.globalCompositeOperation = "destination-out"; // Permite apagar a camada
+        ctx.globalCompositeOperation = "destination-out"; // Apaga a camada
         ctx.beginPath();
-        ctx.arc(pos.x, pos.y, 20, 0, Math.PI * 2);
+        ctx.arc(pos.x, pos.y, 30, 0, Math.PI * 2);
         ctx.fill();
     }
 
-    // Eventos de interação
+    // Eventos para mouse e toque
     canvas.addEventListener("mousedown", () => raspando = true);
     canvas.addEventListener("mouseup", () => raspando = false);
     canvas.addEventListener("mousemove", raspar);
