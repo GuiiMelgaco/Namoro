@@ -120,10 +120,14 @@
             width: 80%; /* Limita a largura do texto */
             color: #fff;
         }
+
+
+
 #raspadinha-container {
     position: relative;
     width: 90vw; /* 90% da largura da tela */
-    max-width: 800px; /* Limite para telas grandes */
+    max-width: 800px;
+    height: 350px; /* Altura fixa */
     margin: 0 auto;
 }
 
@@ -131,33 +135,34 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%; /* Mesma largura do container */
+    width: 100%;
     height: 100%;
 }
 
 #conteudo-revelado {
     width: 100%;
+    height: 100%;
     text-align: center;
 }
 
 #imagem-revelada {
-    width: 100%; /* Ocupa toda a largura do container */
-    height: 70vh; /* 70% da altura da tela */
+    width: 100%;
+    height: 70%; /* 70% da altura */
     object-fit: cover;
     border-radius: 15px;
 }
 
 #mensagem {
-    height: 30vh; /* 30% da altura da tela */
+    height: 30%; /* 30% da altura */
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     color: white;
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 10px;
-    margin-top: 10px;
+    margin-top: 5px;
     padding: 10px;
 }
 
@@ -311,7 +316,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const ctx = canvas.getContext("2d");
     const container = document.getElementById("raspadinha-container");
 
-    // Ajusta o tamanho do canvas dinamicamente
+    // Ajusta o tamanho do canvas para cobrir a área corretamente
     function ajustarCanvas() {
         canvas.width = container.clientWidth;
         canvas.height = container.clientHeight;
@@ -319,8 +324,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
 
-    window.addEventListener("resize", ajustarCanvas);
-    ajustarCanvas(); // Ajusta ao carregar
+    ajustarCanvas();
 
     let raspando = false;
 
@@ -343,7 +347,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Eventos para mouse e toque
     canvas.addEventListener("mousedown", () => raspando = true);
-    canvas.addEventListener("mouseup", () => raspando = false);
+    canvas.addEventListener("mouseup", () => raspando = false); // Não reseta mais
     canvas.addEventListener("mousemove", raspar);
     canvas.addEventListener("touchstart", () => raspando = true);
     canvas.addEventListener("touchend", () => raspando = false);
@@ -353,5 +357,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 </script>
+
+
 </body>
 </html>
