@@ -249,31 +249,33 @@
     <div class="texto-justificado">
 <p>Declaração final (Vou colocar ainda)</p>
 </div>
-<h1>Raspadinha Especial</h1>
-<canvas id="raspadinha" width="300" height="300"></canvas>
-<img id="imagem-revelada" src="imagens/foto1.jpeg" alt="Imagem Revelada"
-     style="display: none; width: 300px; height: 300px; border-radius: 15px;">
+<h1>Raspadinha Especiallll</h1>
+<div style="position: relative; display: inline-block;">
+    <img id="imagem-revelada" src="imagens/foto1.jpeg" alt="Imagem Revelada" 
+         style="width: 300px; height: 300px; border-radius: 15px;">
+    <canvas id="raspadinha" width="300" height="300" 
+            style="position: absolute; top: 0; left: 0;"></canvas>
+</div>
 <h1>Tudo no seu tempo</h1>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const canvas = document.getElementById("raspadinha");
     const ctx = canvas.getContext("2d");
-    const imagemRevelada = document.getElementById("imagem-revelada");
- 
-    // Preenchendo a raspadinha com um fundo cinza
-    ctx.fillStyle = "#bbb";
+
+    // Preenchendo o canvas com a camada da raspadinha
+    ctx.fillStyle = "#bbb"; // Cor da camada que será raspada
     ctx.fillRect(0, 0, canvas.width, canvas.height);
- 
+
     let raspando = false;
- 
+
     function pegarPosicao(event) {
         const rect = canvas.getBoundingClientRect();
         return {
-            x: event.clientX - rect.left,
-y: event.clientY - rect.top
+            x: (event.clientX || event.touches[0].clientX) - rect.left,
+            y: (event.clientY || event.touches[0].clientY) - rect.top
         };
     }
- 
+
     function raspar(event) {
         if (!raspando) return;
         const pos = pegarPosicao(event);
@@ -282,30 +284,16 @@ y: event.clientY - rect.top
         ctx.arc(pos.x, pos.y, 20, 0, Math.PI * 2);
         ctx.fill();
     }
- 
-    function verificarRaspagemCompleta() {
-        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-        let pixelsVisiveis = 0;
-        for (let i = 0; i < imageData.length; i += 4) {
-            if (imageData[i + 3] === 0) { // Verifica transparência
-                pixelsVisiveis++;
-            }
-        }
-        const porcentagemRaspada = (pixelsVisiveis / (canvas.width * canvas.height)) * 100;
-        if (porcentagemRaspada > 50) {
-canvas.style.display = "none";
-imagemRevelada.style.display = "block";
-        }
-    }
- 
+
+    // Eventos de interação
     canvas.addEventListener("mousedown", () => raspando = true);
-    canvas.addEventListener("mouseup", () => { raspando = false; verificarRaspagemCompleta(); });
+    canvas.addEventListener("mouseup", () => raspando = false);
     canvas.addEventListener("mousemove", raspar);
     canvas.addEventListener("touchstart", () => raspando = true);
-    canvas.addEventListener("touchend", () => { raspando = false; verificarRaspagemCompleta(); });
+    canvas.addEventListener("touchend", () => raspando = false);
     canvas.addEventListener("touchmove", (event) => {
         event.preventDefault();
-        raspar(event.touches[0]);
+        raspar(event);
     });
 });
 </script>
