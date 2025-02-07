@@ -251,6 +251,70 @@
     <div class="texto-justificado">
         <p>Declaração final (Vou colocar ainda)</p>
     </div>
-    <h1>Tudo no seu tempo</h1>
+    <h1>Raspe aqui</h1>
+<canvas id="scratchCanvas" width="300" height="100" style="border-radius: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);"></canvas>
+ 
+<h1>Tudo no seu tempo</h1>
+ 
+<script>
+  const canvas = document.getElementById('scratchCanvas');
+  const ctx = canvas.getContext('2d');
+  let isDrawing = false;
+ 
+  // Mensagem oculta
+  const message = "E é aqui que damos um novo passo na nossa história.";
+ 
+  function setupCanvas() {
+    // Preenchendo o fundo com a mensagem oculta
+    ctx.fillStyle = "#FFFAED";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Adicionando a mensagem no centro
+    ctx.fillStyle = "#555";
+    ctx.font = "16px Montserrat Alternates";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(message, canvas.width / 2, canvas.height / 2);
+    
+    // Criando a camada raspável
+    ctx.globalCompositeOperation = "source-over";
+    ctx.fillStyle = "#AAA";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  }
+ 
+  function startDrawing(event) {
+    isDrawing = true;
+  }
+ 
+  function stopDrawing() {
+    isDrawing = false;
+  }
+ 
+  function scratch(event) {
+    if (!isDrawing) return;
+    
+    const rect = canvas.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+const y = event.clientY - rect.top;
+    
+    ctx.globalCompositeOperation = "destination-out";
+    ctx.beginPath();
+    ctx.arc(x, y, 15, 0, Math.PI * 2);
+    ctx.fill();
+  }
+ 
+  canvas.addEventListener("mousedown", startDrawing);
+  canvas.addEventListener("mouseup", stopDrawing);
+  canvas.addEventListener("mousemove", scratch);
+  canvas.addEventListener("touchstart", startDrawing);
+  canvas.addEventListener("touchend", stopDrawing);
+  canvas.addEventListener("touchmove", function (event) {
+    event.preventDefault();
+    const touch = event.touches[0];
+    scratch(touch);
+  });
+ 
+  setupCanvas();
+</script>
 </body>
 </html>
