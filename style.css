@@ -1,73 +1,50 @@
-/* Estilos gerais */
+/* style.css */
+
 body {
     font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
     margin: 0;
     padding: 0;
-}
-
-.header, .footer {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-}
-
-.nav ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.nav ul li {
-    display: inline;
-    margin-right: 10px;
-}
-
-.nav ul li a {
-    color: #fff;
+  }
+  
+  h1, h3 {
+    font-weight: bold;
+  }
+  
+  /* Estilo adicional para o cabeçalho */
+  header {
+    position: relative;
+    padding-left: 1rem;
+  }
+  
+  /* Ajuste no formulário de contato */
+  #contato form textarea {
+    resize: vertical;
+    width: 100%;
+  }
+  
+  /* Card ajustado para responsividade */
+  .card {
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  footer a {
     text-decoration: none;
-}
-
-.main {
-    padding: 20px;
-}
-
-.section {
-    margin-bottom: 20px;
-}
-
-.article {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-
-.article img {
-    max-width: 100%;
-    height: auto;
-}
-
-.formulario form {
-    display: flex;
-    flex-direction: column;
-}
-
-.formulario label {
-    margin-bottom: 5px;
-}
-
-.formulario input {
-    margin-bottom: 10px;
-    padding: 5px;
-}
-
-.formulario button {
-    padding: 10px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
-.formulario button:hover {
-    background-color: #555;
-}
+  }
+  
+  /* Sobrescreve o verde padrão com um tom mais harmônico */
+  .bg-success {
+    background-color: #2e7d32 !important;
+  }
+  
+  .btn-success {
+    background-color: #43a047;
+    border-color: #43a047;
+  }
+  
+  .btn-success:hover {
+    background-color: #388e3c;
+    border-color: #388e3c;
+  }
+  
